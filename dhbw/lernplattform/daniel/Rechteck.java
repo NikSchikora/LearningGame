@@ -1,21 +1,29 @@
 package dhbw.lernplattform.daniel;
 
+import dhbw.lernplattform.tasks.Task;
+
 import javax.swing.*;
+import java.util.ArrayList;
 
-public class Rechteck {
+public class Rechteck  {
 
 
-	private JLabel aufgabe;
 	private double loesungDesAnwenders;
+	private ArrayList<Task> tasks;
 
 	public Rechteck() {
-		aufgabe = new JLabel();
-		WahlderAufg(0, hoeheZufall(), grundflaecheZufall());
+		tasks = new ArrayList<>();
+		for(int i = 0; i < 2; i++) {
+			tasks.add(wahlderAufg(0, hoeheZufall(), grundflaecheZufall(), i));
+			System.out.println("Added task " + i);
+		}
+
 	}
 
-	public JLabel getAufgabenLabel() {
-		return aufgabe;
+	public ArrayList<Task> getTasks() {
+		return tasks;
 	}
+
 
 	/*
 	public static void main(String[] args) {
@@ -27,14 +35,17 @@ public class Rechteck {
 	}// End main
 	*/
 
-	private void WahlderAufg(int zufallAufgabe, int hoeheZufall, int grundflaecheZufall) {
+	public Task wahlderAufg(int zufallAufgabe, int hoeheZufall, int grundflaecheZufall, int index) {
 		// TODO
 		loesungDesAnwenders = 0.0;
 
+		Task task = new Task();
+
 		switch (zufallAufgabe) {
 		case 0: // Done
-			aufgabe.setText("<html><body> Thema Rechteck <br> Aufgabe 1: <br> Berechnen Sie den Umfang <br> Höhe: " + hoeheZufall
-					+ "<br> Grundfläche: " + grundflaecheZufall + "</body></html>");
+
+			task.setMessage("<html><body> Thema Rechteck Aufgabe " + index + ":  Berechnen Sie den Umfang  Höhe: " + hoeheZufall
+					+ " Grundfläche: " + grundflaecheZufall + "</body></html>");
 
 			// Verteiler.message.setText("L�se nun folgende Aufgabe 1: berechenen sie den
 			// Umfang des Dreiecks." + "\n"
@@ -42,7 +53,7 @@ public class Rechteck {
 			// "Grundflaeche: "
 			// + grundflaecheZufall);
 
-			loesungDesAnwenders = berechnungUmfang(hoeheZufall, grundflaecheZufall);
+			task.setAnswer(berechnungUmfang(hoeheZufall, grundflaecheZufall));
 			//Verteiler.eingabeundAuswertung(loesungDesAnwenders);
 
 			break;
@@ -78,6 +89,7 @@ public class Rechteck {
 			Verteiler.message.setText("<html><body> Thema Rechteck <br> Aufgabe 5: <br><body><html>");
 			break;
 		}
+		return task;
 	}
 
 	public String testValidate(double ergebnis) {

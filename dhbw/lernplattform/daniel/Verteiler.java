@@ -25,7 +25,7 @@ public class Verteiler {
 
 		for (int j = 1; j <= 3; j++) {
 			System.out.println("2");
-			Kreis.main(args);
+			//Kreis.main(args);
 		}
 
 		for (int d = 1; d <= 3; d++) {
